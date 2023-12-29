@@ -19,6 +19,10 @@ export class Render extends WebGLRenderer {
     });
     this.camera = opts.camera;
     this.scene = opts.scene;
+    //set background to the scene
+
+    this.setClearColor("#222122");
+
     this.init();
     this.updateSize();
     this.loop();
@@ -35,7 +39,6 @@ export class Render extends WebGLRenderer {
   }
 
   public loop(): void {
-    console.log("loop");
     this.render(this.scene, this.camera);
     window.requestAnimationFrame(this.loop.bind(this));
   }

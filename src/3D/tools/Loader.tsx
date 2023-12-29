@@ -1,3 +1,4 @@
+import { Mesh, Scene } from "three";
 import { DRACOLoader, GLTFLoader } from "three/examples/jsm/Addons.js";
 
 export class Loader extends GLTFLoader {

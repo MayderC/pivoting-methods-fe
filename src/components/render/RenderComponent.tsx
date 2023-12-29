@@ -11,6 +11,7 @@ interface RenderProps {
   camera: Camera | undefined;
   canvasId: string;
   children: React.ReactNode;
+  className?: string;
 }
 
 export const RenderComponent = ({
@@ -18,6 +19,7 @@ export const RenderComponent = ({
   camera,
   scene,
   canvasId,
+  className,
 }: RenderProps) => {
   const [render, setRender] = useState<Render>();
 
@@ -27,10 +29,11 @@ export const RenderComponent = ({
     const spotLight = new SpotLight(0xcccccc, 1);
     spotLight.position.set(-3.33, 0.8, 1);
     spotLight.castShadow = true;
+    spotLight.rotation.y = -Math.PI / 2;
     scene.add(spotLight);
   }, [camera, scene, canvasId]);
 
   useEffect(() => {}, []);
 
-  return <div>{children}</div>;
+  return <div className={className}>{children}</div>;
 };
