@@ -3,8 +3,8 @@
 import { Camera } from "@/3D/Init/Camera";
 import { Render } from "@/3D/Init/Render";
 import { Scene } from "@/3D/Init/Scene";
+import React from "react";
 import { useEffect, useState } from "react";
-import { SpotLight } from "three";
 
 interface RenderProps {
   scene: Scene;
@@ -25,15 +25,19 @@ export const RenderComponent = ({
 
   useEffect(() => {
     if (!camera) return;
-    setRender(new Render({ canvasId, scene, camera }));
-    const spotLight = new SpotLight(0xcccccc, 1);
-    spotLight.position.set(-3.33, 0.8, 1);
-    spotLight.castShadow = true;
-    spotLight.rotation.y = -Math.PI / 2;
-    scene.add(spotLight);
   }, [camera, scene, canvasId]);
 
   useEffect(() => {}, []);
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className}>
+      {React.Children.map(children, (child): React.ReactNode => {
+        console.log(child);
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { ...child.props, render });
+        }
+        return child;
+      })}
+    </div>
+  );
 };

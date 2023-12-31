@@ -24,4 +24,8 @@ export class Camera extends PerspectiveCamera {
       this.updateProjectionMatrix();
     });
   }
+
+  public static updatePosition(camera: Camera): void {
+    camera.position.set(0, 0, 5);
+  }
 }

@@ -11,6 +11,7 @@ interface RenderBuildParams {
 export class Render extends WebGLRenderer {
   private camera: Camera;
   private scene: Scene;
+  private functionsToExecute: Map<string, Function> = new Map();
 
   constructor(opts: RenderBuildParams) {
     super({
@@ -38,8 +39,17 @@ export class Render extends WebGLRenderer {
     });
   }
 
+  private executeFunctions(): void {
+    this.functionsToExecute.forEach((func) => func());
+  }
+
+  public addFunctionToExecute(func: Function, name: string): void {
+    this.functionsToExecute.set(name, func);
+  }
+
   public loop(): void {
-    this.render(this.scene, this.camera);
     window.requestAnimationFrame(this.loop.bind(this));
+    this.executeFunctions();
+    this.render(this.scene, this.camera);
   }
 }
