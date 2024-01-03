@@ -114,10 +114,10 @@ export default function Home() {
         </div>
       </section>
       <section id="section2" className="min-h-screen h-screen z-100">
-        <h1>Name</h1>
+        <h1>Name1</h1>
       </section>
       <section id="section3" className="min-h-screen h-screen z-100">
-        <h1>Name</h1>
+        <h1>Name2</h1>
       </section>
     </main>
   );
