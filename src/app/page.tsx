@@ -84,6 +84,26 @@ export default function Home() {
       ease: " power2.inOut ",
     });
 
+    const container = document.getElementById("container");
+
+    container.addEventListener("scroll", () => {
+      console.log(container?.scrollTop);
+      console.log(container?.scrollHeight);
+      console.log(container?.offsetHeight);
+
+      console.log("resize");
+      console.log(
+        container?.scrollTop * 100,
+        container?.scrollHeight - container?.offsetHeight
+      );
+
+      console.log("porcentaje");
+      console.log(
+        (container?.scrollTop * 100) /
+          (container?.scrollHeight - container?.offsetHeight)
+      );
+    });
+
     render.addFunctionToExecute(() => {
       camera.position.x = camPos.x;
       //camera.rotation.y = camPos.rotation.y;
